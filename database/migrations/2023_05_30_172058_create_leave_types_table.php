@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faculties', function (Blueprint $table) {
-            $table->id();
+        Schema::create('leave_types', function (Blueprint $table) {
+            $table->id('leave_type_id');
             $table->string('name');
-            $table->string('years_to_graduate');
+            $table->softdeletes();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('faculties');
+        Schema::dropIfExists('leave_types');
     }
 };
