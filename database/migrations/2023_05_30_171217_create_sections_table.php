@@ -12,10 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sections', function (Blueprint $table) {
-            $table->id();
+            $table->id('section_id');
             $table->unsignedBigInteger('semester_id');
             $table->string('name');
+            $table->softdeletes();
             $table->timestamps();
+
+            $table->foreign('semester_id')->references('semester_id')->on('semesters')->ondelete('cascade');
         });
     }
 

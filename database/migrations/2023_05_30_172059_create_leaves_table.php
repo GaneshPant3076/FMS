@@ -12,11 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('leaves', function (Blueprint $table) {
-            $table->id();
+            $table->id('leave_id');
             $table->unsignedBigInteger('leave_type_id');
             $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('student_id');
+            $table->softdeletes();
             $table->timestamps();
+
+            $table->foreign('leave_type_id')->references('leave_type_id')->on('leave_types')->ondelete('cascade');
+            $table->foreign('teacher_id')->references('teacher_id')->on('teachers')->ondelete('cascade');
+            $table->foreign('student_id')->references('student_id')->on('students')->ondelete('cascade');
         });
     }
 
