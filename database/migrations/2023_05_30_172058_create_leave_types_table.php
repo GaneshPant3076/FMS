@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('leave_types', function (Blueprint $table) {
-            $table->id('leave_type_id');
+            $table->id('id');
             $table->string('name');
             $table->softdeletes();
             $table->timestamps();

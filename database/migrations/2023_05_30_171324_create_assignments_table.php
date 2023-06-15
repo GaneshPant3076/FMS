@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('assignments', function (Blueprint $table) {
-            $table->id('assignment_id');
+            $table->id('id');
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('teacher_id');
             $table->string('file');
@@ -20,8 +20,8 @@ return new class extends Migration
             $table->softdeletes();
             $table->timestamps();
 
-            $table->foreign('subject_id')->references('subject_id')->on('subjects')->ondelete('cascade');
-            $table->foreign('teacher_id')->references('teacher_id')->on('teachers')->ondelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->ondelete('cascade');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->ondelete('cascade');
         });
     }
 
