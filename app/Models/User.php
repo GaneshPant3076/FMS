@@ -40,8 +40,15 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+    protected $guarded=['id'];
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class, 'role_id', 'id');
+    }
 }
+
