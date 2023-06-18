@@ -153,6 +153,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- begin::Global Config(global config for global JS sciprts) -->
     <script>
+        const d = new Date();
+          d.getFullYear();
         var KTAppOptions = {
             "colors": {
                 "state": {
