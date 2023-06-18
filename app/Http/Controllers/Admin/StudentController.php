@@ -11,9 +11,9 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {   $students=Student::all();
-        return view('admin.student.index',compact('students'));
+    public function index(){
+    //    $students=Student::all();
+        return view('admin.student.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.student.create');
     }
 
     /**

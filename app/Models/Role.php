@@ -10,8 +10,9 @@ class Role extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    public function post()
+    protected $guarded=['id'];
+    public function users()
     {
-        return $this->belongsTo(post::class, 'user_id', 'id');
+        return $this->hasMany(User::class, 'role_id', 'role_id');
     }
 }

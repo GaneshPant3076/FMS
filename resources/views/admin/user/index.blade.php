@@ -26,8 +26,6 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Faculty</th>
-                        <th></th>
-                        <th></th>
                         <th>Email</th>
                         <th></th>
                         <th style="text-align: center">Actions</th>

@@ -6,14 +6,14 @@
                 <span class="kt-portlet__head-icon">
                 </span>
                 <h3 class="kt-portlet__head-title">
-                    User Listing
+                    Student Listing
                 </h3>
             </div>
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-actions">
-                    <a href="{{ url('admin/user/create') }}" class="btn btn-primary">
+                    <a href="{{ url('admin/student/create') }}" class="btn btn-primary">
                         <i class="fa fa-plus"></i>
-                        Create
+                        Add Student
                     </a>
                 </div>
             </div>
@@ -31,25 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
 
-                            {{-- <td>
-                                {!! Form::open(['route' => ['job.destroy', $job->id], 'method' => 'delete']) !!}
-                                <button class='btn btn-danger'>Delete</button>
-                                {!! Form::close() !!} --}}
-                            <a href="{{ url('admin/user/' . $user->id . '/edit') }}" class="btn btn-sm btn-primary">Edit</a>
-
-                            <a href="{{ url('admin/user', $user->id) }}" class="btn btn-sm btn-success">view</a>
-
-                            </td>
-
-                        </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
