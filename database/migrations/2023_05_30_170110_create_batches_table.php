@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('batches', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedBigInteger('student_id');
             $table->string('batch_year');
             $table->softdeletes();
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('students')->ondelete('cascade');
+
         });
     }
 
