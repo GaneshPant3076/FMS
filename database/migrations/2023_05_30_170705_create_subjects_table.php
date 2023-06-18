@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('semester_id');
             $table->string('name');
             $table->softdeletes();
             $table->timestamps();
 
-            $table->foreign('subject_id')->references('id')->on('semesters')->ondelete('cascade');
+            $table->foreign('semester_id')->references('id')->on('semesters')->ondelete('cascade');
         });
     }
 
