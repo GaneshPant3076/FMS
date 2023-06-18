@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('batches', function (Blueprint $table) {
-            $table->id('batch_id');
-            $table->unsignedBigInteger('student_id');
+            $table->id('id');
             $table->string('batch_year');
             $table->softdeletes();
             $table->timestamps();
 
-            $table->foreign('student_id')->references('student_id')->on('students')->ondelete('cascade');
+
         });
     }
 

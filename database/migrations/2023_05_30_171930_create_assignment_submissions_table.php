@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('assignment_submissions', function (Blueprint $table) {
-            $table->id('assignment_submission_id');
+            $table->id('id');
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('assignment_id');
             $table->string('file');
             $table->softdeletes();
             $table->timestamps();
 
-            $table->foreign('student_id')->references('student_id')->on('students')->ondelete('cascade');
-            $table->foreign('assignment_id')->references('assignment_id')->on('assignments')->ondelete('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->ondelete('cascade');
+            $table->foreign('assignment_id')->references('id')->on('assignments')->ondelete('cascade');
         });
     }
 

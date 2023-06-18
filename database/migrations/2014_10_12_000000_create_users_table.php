@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('user_id');
+            $table->id('id');
             $table->unsignedBigInteger('role_id');
             $table->string('name');
             $table->string('email')->unique();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->softdeletes();
             $table->timestamps();
 
-            $table->foreign('role_id')->references('role_id')->on('roles')->ondelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->ondelete('cascade');
         });
     }
 

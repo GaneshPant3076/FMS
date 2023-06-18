@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teachers', function (Blueprint $table) {
-            $table->id('teacher_id');
+            $table->id('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('faculty_id');
             $table->string('salary');
             $table->softdeletes();
 
-            $table->foreign('user_id')->references('user_id')->on('users')->ondelete('cascade');
-            
-            $table->foreign('faculty_id')->references('faculty_id')->on('faculties')->ondelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
+
+            $table->foreign('faculty_id')->references('id')->on('faculties')->ondelete('cascade');
 
 
             $table->timestamps();
