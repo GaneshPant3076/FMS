@@ -25,11 +25,10 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Faculty</th>
-                        <th></th>
-                        <th></th>
+                        <th>Role_id</th>
+                        <th>password</th>
                         <th>Email</th>
-                        <th></th>
+                        <th>Number</th>
                         <th style="text-align: center">Actions</th>
                     </tr>
                 </thead>
@@ -39,7 +38,9 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
+                            <td>{{ $user->password }}</td>
+                            <td>{{ $user->number }}</td>
+                            <td>{{ $user->role_id }}</td>
 
                             {{-- <td>
                                 {!! Form::open(['route' => ['job.destroy', $job->id], 'method' => 'delete']) !!}

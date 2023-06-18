@@ -26,7 +26,7 @@ class User extends Authenticatable
     public function teacher(): HasMany{
         return $this->hasMany(Teacher::class,'teacher_id','id');
     }
-    public  function
+
 
 
     /**
@@ -34,11 +34,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -61,9 +57,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function roles()
-    {
-        return $this->hasMany(Role::class, 'role_id', 'id');
-    }
+  
 }
 

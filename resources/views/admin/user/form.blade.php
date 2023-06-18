@@ -11,7 +11,7 @@
                 {{ $message }}
             @enderror
             <label for="Role">Role</label>
-            {!! Form::text('role', null, ['class' => 'form-control']) !!}
+            {!! Form::text('role_id', null, ['class' => 'form-control']) !!}
              @error('role')
                 {{ $message }}
             @enderror
@@ -22,8 +22,14 @@
               @error('email')
                 {{ $message }}
             @enderror
+            <label for="email">Password</label>
+             {!! Form::password('password', null, ['class' => 'form-control']) !!}
+              @error('password')
+                {{ $message }}
+            @enderror
 
          </div>
+
     </div>
 </div>
 
