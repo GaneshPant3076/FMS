@@ -25,11 +25,9 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Faculty</th>
-                        <th></th>
-                        <th></th>
                         <th>Email</th>
-                        <th></th>
+                        <th>Number</th>
+                        <th>Role_id</th>
                         <th style="text-align: center">Actions</th>
                     </tr>
                 </thead>
@@ -39,16 +37,17 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
+                            <td>{{ $user->number }}</td>
+                            <td>{{ $user->role_id }}</td>
 
-                            {{-- <td>
-                                {!! Form::open(['route' => ['job.destroy', $job->id], 'method' => 'delete']) !!}
-                                <button class='btn btn-danger'>Delete</button>
+                            <td>
+                                {{-- {!! Form::open(['url' => ['admin/user', $user->id], 'method' => 'delete']) !!}
+                                <button class='btn btn-sm btn-danger'data-confirm-delete="true">Delete</button>
                                 {!! Form::close() !!} --}}
-                            <a href="{{ url('admin/user/' . $user->id . '/edit') }}" class="btn btn-sm btn-primary">Edit</a>
 
-                            <a href="{{ url('admin/user', $user->id) }}" class="btn btn-sm btn-success">view</a>
-
+                                <a href="{{ url('admin/user', $user->id) }}" class="btn btn-sm btn-success">view</a>
+                                <a href="{{ url('admin/user/' . $user->id . '/edit') }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ route('user.destroy', $user->id) }}" class="btn btn-sm btn-danger" data-confirm-delete="true">Delete</a>
                             </td>
 
                         </tr>

@@ -139,6 +139,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 @include('admin.layouts.footer')
                 <!-- end:: Footer -->
             </div>
+            
+            @include('sweetalert::alert')
+
         </div>
     </div>
 

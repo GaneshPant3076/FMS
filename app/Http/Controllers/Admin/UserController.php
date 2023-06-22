@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::all();
+        $users = User::latest()->paginate(10);
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+        // $users=User::all();
         return view('admin.user.index',compact('users'));
     }
 
@@ -22,7 +27,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = Role::all()->pluck('name', 'id');
+
+        return view('admin.user.create', compact('roles'));
     }
 
     /**
@@ -30,8 +37,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
-        return redirect()->route('user.index');
+
+        //validation
+    // $task = User::create($request->all());
+    $request->validate([
+        'name' => 'required|min:3',
+        'email' => 'required|min:3',
+        // 'role'=>'required|min:3',
+        'number'=>'required|min:3',
+        'password'=>'required|min:3',
+    ]);
+    User::create($request->all());
+    return redirect()->route('user.index')->with('success', 'User is  Created Successfully!');
+        // return redirect()->route('user.index');
     }
 
     /**
@@ -39,7 +57,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $roles = Role::all()->pluck('name', 'id');
+        $user=User::find($id);
+        return view('admin.user.show',compact('user','roles'));
     }
 
     /**
@@ -47,7 +67,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $roles = Role::all()->pluck('name', 'id');
+        $user=User::find($id);
+        return view('admin.user.edit',compact('user','roles'));
     }
 
     /**
@@ -55,7 +77,9 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user=User::find($id);
+        $user->update($request->all());
+        return redirect()->route('user.index');
     }
 
     /**
@@ -63,6 +87,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user=User::find($id);
+        $user->delete();
+        return redirect()->route('user.index')->with('success','user is deleted successfully');
     }
 }
