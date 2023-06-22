@@ -10,21 +10,37 @@
             @error('title')
                 {{ $message }}
             @enderror
-            <label for="Role">Role</label>
-            {!! Form::text('role', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="col-lg-6">
+            <label for="User">User</label>
+            {!! Form::select('user_id',$users, null, ['class' => 'form-control']) !!}
              @error('role')
                 {{ $message }}
             @enderror
         </div>
+    </div>
+    <div class="form-group row">
          <div class="col-lg-6">
-            <label for="email">Email</label>
-             {!! Form::email('email', null, ['class' => 'form-control']) !!}
+            <label for="Faculty">Faculty</label>
+             {!! Form::select('faculty_id',$faculties, null, ['class' => 'form-control']) !!}
               @error('email')
                 {{ $message }}
             @enderror
-
+         </div>
+         <div class="col-lg-6">
+            <label for="Batch">Batch</label>
+             {!! Form::select('batch_id',$batches,null, ['class' => 'form-control']) !!}
+              @error('password')
+                {{ $message }}
+            @enderror
          </div>
     </div>
+    {{-- <div class="form-group row">
+        <div class="col-lg-6">
+            <label for="Number">Number</label>
+            {!! Form::tel('number', null, ['class' => 'form-control']) !!}
+        </div>
+    </div> --}}
 </div>
 
 <div class="kt-portlet__foot">

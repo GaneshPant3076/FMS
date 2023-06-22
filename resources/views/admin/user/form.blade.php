@@ -10,26 +10,36 @@
             @error('title')
                 {{ $message }}
             @enderror
+        </div>
+        <div class="col-lg-6">
             <label for="Role">Role</label>
-            {!! Form::text('role_id', null, ['class' => 'form-control']) !!}
+            {!! Form::select('role_id',$roles, null, ['class' => 'form-control']) !!}
              @error('role')
                 {{ $message }}
             @enderror
         </div>
+    </div>
+    <div class="form-group row">
          <div class="col-lg-6">
             <label for="email">Email</label>
              {!! Form::email('email', null, ['class' => 'form-control']) !!}
               @error('email')
                 {{ $message }}
             @enderror
-            <label for="email">Password</label>
-             {!! Form::password('password', null, ['class' => 'form-control']) !!}
+         </div>
+         <div class="col-lg-6">
+            <label for="password">Password</label>
+             {!! Form::password('password', ['class' => 'form-control']) !!}
               @error('password')
                 {{ $message }}
             @enderror
-
          </div>
-
+    </div>
+    <div class="form-group row">
+        <div class="col-lg-6">
+            <label for="Number">Number</label>
+            {!! Form::tel('number', null, ['class' => 'form-control']) !!}
+        </div>
     </div>
 </div>
 
