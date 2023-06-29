@@ -1,9 +1,11 @@
 <?php
 
 namespace Database\Seeders;
+use App\Constants\RoleConstant;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class RoleTableSeeder extends Seeder
 {
@@ -14,15 +16,20 @@ class RoleTableSeeder extends Seeder
     {
         $roles=[
             [
-                'name'=>'Admin'
+                'name'=> RoleConstant::ADMIN
             ],
             [
-                'name'=>'Student'
+                'name'=> RoleConstant::STUDENT
+            ],
+            [
+                'name'=> RoleConstant::TEACHER
             ]
-            ];
-            Role::truncate();
-            foreach($roles as $role){
-                Role::create($role);
-            }
+        ];
+        Schema::disableForeignKeyConstraints();
+        Role::truncate();
+        Schema::enableForeignKeyConstraints();
+        foreach($roles as $role){
+            Role::create($role);
+        }
     }
 }

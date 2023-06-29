@@ -1,10 +1,7 @@
 <?php
 
-use Controllers\Admin\UserController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\LoginController;
-use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +14,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 |
 */
 
-//  Route::get('/', function () {
-//     Alert::success('hello');
-//      return view('welcome');
-// });
-Route::get('admin/dash', [AdminController::class, 'index']);
-Route::get('/',[LoginController::class,'index']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::resource('admin/user','\App\Http\Controllers\Admin\UserController');
-Route::resource('admin/student','\App\Http\Controllers\Admin\StudentController');
-// Route::resource('admin/blog', '\App\Http\Controllers\Admin\BlogController');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__ . '/auth/auth.php';
+require __DIR__ . '/auth/admin.php';
+
