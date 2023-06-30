@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth/auth.php';
 require __DIR__ . '/auth/admin.php';
 
+
+Route::resource('admin/user', '\App\Http\Controllers\Admin\UserController'::class);

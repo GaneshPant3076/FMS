@@ -22,7 +22,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!--end::Base Path -->
     <meta charset="utf-8" />
-    <title>Metronic | Dashboard 11</title>
+    <title>FSM | Dashboard </title>
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -101,6 +101,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                 <!-- end:: Content -->
             </div>
+            @include('sweetalert::alert')
 
             <!-- begin:: Footer -->
                 @include('backend.layouts.footer')
@@ -143,6 +144,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- end::Global Config -->
 
 <!--begin:: Global Mandatory Vendors -->
+<link href="{{ asset('assets/admin/css') }}/full-calendar.css" rel="stylesheet" type="text/css" />
 <script src="{{ asset('assets/admin/js') }}/jquery.js" type="text/javascript"></script>
 <script src="{{ asset('assets/admin/js') }}/popper.js" type="text/javascript"></script>
 <script src="{{ asset('assets/admin/js') }}/bootstrap.min.js" type="text/javascript"></script>
@@ -157,6 +159,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!--begin::Global Theme Bundle(used by all pages) -->
 <script src="{{ asset('assets/admin/js') }}/scripts.bundle.js" type="text/javascript"></script>
+<script src="{{ asset('assets/admin/js') }}/full-calendar.js" type="text/javascript"></script>
+<script src="{{ asset('assets/admin/js') }}/google-calendar.js" type="text/javascript"></script>
 
 <!--end::Global Theme Bundle -->
 
