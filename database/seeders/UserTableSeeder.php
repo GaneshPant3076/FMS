@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
+        
         $users = [
             [
                 'name' => 'Sharad Yadav',
