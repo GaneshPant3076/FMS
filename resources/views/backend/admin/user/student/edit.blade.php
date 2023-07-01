@@ -8,12 +8,12 @@
                 <h3 class="kt-portlet__head-title">Edit Job</h3>
             </div>
         </div>
-        {!! Form::model($user, [
-            'route' => ['user.update', $user->id],
+        {!! Form::model($student, [
+            'route' => ['student.update', $student->id],
             'method' => 'patch',
             'class' => 'kt-form kt-form--label-right',
         ]) !!}
-        @include('backend.admin.user.form', ['formAction' => 'Update'])
+        @include('backend.admin.user.student.form', ['formAction' => 'Update'])
 
         {!! Form::close() !!}
     </div>

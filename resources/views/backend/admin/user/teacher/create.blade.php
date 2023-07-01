@@ -8,8 +8,8 @@
                 <h3 class="kt-portlet__head-title">Create User</h3>
             </div>
         </div>
-        {!! Form::open(['url' => 'admin/user', 'class' => 'kt-form kt-form--label-right', 'method' => 'post']) !!}
-        @include('backend.admin.user.form', ['formAction' => 'Save'])
+        {!! Form::open(['route' => 'admin.teacher.store', 'class' => 'kt-form kt-form--label-right', 'method' => 'post']) !!}
+        @include('backend.admin.user.teacher.form', ['formAction' => 'Save'])
         {!! Form::close() !!}
     </div>
 @endsection
