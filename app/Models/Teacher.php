@@ -13,22 +13,33 @@ class Teacher extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $guarded = [
+        'id'
+    ];
+
     /**
      * Get the user that owns the Teacher
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-   public function user(): BelongsTo{
-       return $this->belongsTo(User::class,'user_id','id');
-   }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
-
+    /**
+     * @return BelongsTo
+     */
     public function faculty(): BelongsTo
     {
         return $this->belongsTo(Faculty::class, 'faculty_id', 'id');
     }
-public function assignment(): HasMany{
-       return $this->hasMany(Assignment::class,'teacher_id','id');
-}
 
+    /**
+     * @return HasMany
+     */
+    public function assignment(): HasMany
+    {
+        return $this->hasMany(Assignment::class, 'teacher_id', 'id');
+    }
 }
