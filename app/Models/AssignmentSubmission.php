@@ -11,7 +11,7 @@ class AssignmentSubmission extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $guarded = ['id'];
 
     public function assignment():BelongsTo{
         return $this->belongsTo(Assignment::class,'assignment_id','id');

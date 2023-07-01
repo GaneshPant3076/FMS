@@ -36,11 +36,11 @@
                                 class="kt-menu__link "><i
                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                     class="kt-menu__link-text">Admin</span></a></li>
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('admin/user') }}"
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('admin/teacher') }}"
                                 class="kt-menu__link "><i
                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                     class="kt-menu__link-text">Teacher</span></a></li>
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('admin/user') }}"
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('admin/student') }}"
                                 class="kt-menu__link "><i
                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                     class="kt-menu__link-text">Student</span></a></li>

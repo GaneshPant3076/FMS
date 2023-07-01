@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +31,7 @@ require __DIR__ . '/auth/admin.php';
 
 
 Route::resource('admin/user', '\App\Http\Controllers\Admin\UserController'::class);
+
+Route::resource('admin/student',StudentController::class);
+
+Route::resource('admin/teacher',TeacherController::class);

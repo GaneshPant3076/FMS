@@ -13,6 +13,6 @@
             <h4> Batch: {{ $student->batch_id}}</h4><br>
             <h4> Faculty: {{ $student->faculty_id }}</h4><br>
             <h4> User_id: {{ $student->user_id }}</h4>
-
+            
         </div>
     @endsection

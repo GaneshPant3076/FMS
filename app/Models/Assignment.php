@@ -12,7 +12,7 @@ class Assignment extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $guarded = ['id'];
     public function subject(): BelongsTo{
         return $this->belongsTo(Subject::class,'subject_id','id');
     }

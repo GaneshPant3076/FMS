@@ -10,6 +10,7 @@ class Section extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded = ['id'];
 
     public function semester(): BelongsTo{
         return $this->belongsTo(Semester::class,'semester_id','id');

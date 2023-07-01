@@ -11,7 +11,7 @@ class Faculty extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $guarded = ['id'];
     public function teacher(): HasMany{
         return $this->hasMany(Teacher::class,'faculty_id','id');
     }

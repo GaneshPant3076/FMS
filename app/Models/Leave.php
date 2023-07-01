@@ -12,7 +12,7 @@ class Leave extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $guarded = ['id'];
     public function leaveType(): BelongsTo {
         return $this->belongsTo(LeaveType::class,foreignKey: 'leave_type_id',ownerKey: 'id');
     }

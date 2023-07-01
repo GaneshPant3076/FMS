@@ -11,7 +11,7 @@ class Batch extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $guarded = ['id'];
     public function student(): HasMany{
         return $this->hasMany(Student::class,'batch_id','id');
     }
