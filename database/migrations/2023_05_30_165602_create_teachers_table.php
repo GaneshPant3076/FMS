@@ -20,10 +20,7 @@ return new class extends Migration
             $table->softdeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
-
             $table->foreign('faculty_id')->references('id')->on('faculties')->ondelete('cascade');
-
-
             $table->timestamps();
         });
     }

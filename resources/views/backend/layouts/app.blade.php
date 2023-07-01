@@ -40,6 +40,12 @@ License: You must have a valid license purchased only from themeforest(the above
     </script>
 
     <!--end::Fonts -->
+    <!--Additional Vendors-->
+    <link href="{{ asset('assets/admin/css') }}/datatable.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/css') }}/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+    <!--End Additional Vendors-->
+
+
 
     <!--begin:: Global Mandatory Vendors -->
     <link href="{{ asset('assets/admin/css') }}/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
@@ -48,6 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!--begin::Global Theme Styles(used by all pages) -->
     <link href="{{ asset('assets/admin/css') }}/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/admin/css') }}/style.css" rel="stylesheet" type="text/css" />
 
     <!--end::Global Theme Styles -->
 
@@ -59,6 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!--end::Layout Skins -->
     <link rel="shortcut icon" href="{{ asset('assets/admin/media') }}/logos/favicon.ico" />
+    @stack('style')
 </head>
 
 <!-- end::Head -->
@@ -159,9 +167,11 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!--begin::Global Theme Bundle(used by all pages) -->
 <script src="{{ asset('assets/admin/js') }}/scripts.bundle.js" type="text/javascript"></script>
-<script src="{{ asset('assets/admin/js') }}/full-calendar.js" type="text/javascript"></script>
-<script src="{{ asset('assets/admin/js') }}/google-calendar.js" type="text/javascript"></script>
+<!--Additional Vendors-->
+<script src="{{ asset('assets/admin/js') }}/datatable.bundle.js" type="text/javascript"></script>
+<!--End Additional Vendors-->
 
+@stack('scripts')
 <!--end::Global Theme Bundle -->
 
 </body>

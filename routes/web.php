@@ -28,10 +28,3 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth/auth.php';
 require __DIR__ . '/auth/admin.php';
-
-
-Route::resource('admin/user', '\App\Http\Controllers\Admin\UserController'::class);
-
-Route::resource('admin/student',StudentController::class);
-
-Route::resource('admin/teacher',TeacherController::class);

@@ -9,7 +9,7 @@
             </div>
         </div>
         {!! Form::open(['url' => 'admin/student', 'class' => 'kt-form kt-form--label-right', 'method' => 'post']) !!}
-        @include('backend.admin.student.form', ['formAction' => 'Save'])
+        @include('backend.admin.user.student.form', ['formAction' => 'Save'])
         {!! Form::close() !!}
     </div>
 @endsection

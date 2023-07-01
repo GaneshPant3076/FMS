@@ -1,4 +1,4 @@
-{{-- <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
+<li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
     <a href="{{ route('admin.dashboard') }}" class="kt-menu__link ">
                         <span class="kt-menu__link-icon">
                         </span>
@@ -36,11 +36,11 @@
                                 class="kt-menu__link "><i
                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                     class="kt-menu__link-text">Admin</span></a></li>
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('admin/teacher') }}"
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('admin/user') }}"
                                 class="kt-menu__link "><i
                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                     class="kt-menu__link-text">Teacher</span></a></li>
-                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('admin/student') }}"
+                        <li class="kt-menu__item " aria-haspopup="true"><a href="{{ url('admin/user') }}"
                                 class="kt-menu__link "><i
                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
                                     class="kt-menu__link-text">Student</span></a></li>
@@ -54,30 +54,42 @@
     <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
         <a href="{{ url('') }}" class="kt-menu__link ">
             <span class="kt-menu__link-icon">
+                        <i class="la la-dashboard">
+                        </i>
             </span>
-            <span class="kt-menu__link-text">Faculty</span></a>
-    </li>
-
-
-    <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
-        <a href="{{ url('') }}" class="kt-menu__link ">
-            <span class="kt-menu__link-icon">
-            </span>
-            <span class="kt-menu__link-text">Semester</span></a>
-
-    <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
-        <a href="{{ url('') }}" class="kt-menu__link ">
-            <span class="kt-menu__link-icon">
-            </span>
-            <span class="kt-menu__link-text">Classes</span></a>
-    </li>
-    <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
-        <a href="{{ url('') }}" class="kt-menu__link ">
-            <span class="kt-menu__link-icon">
-            </span>
-            <span class="kt-menu__link-text">Settings</span></a>
-    </li>
-
-    </ul>
-</div>
-</div>
+        <span class="kt-menu__link-text">Dashboard</span>
+    </a>
+</li>
+<li class="kt-menu__item kt-menu__item--submenu kt-menu__item--open" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+    <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+        <span class="kt-menu__link-icon">
+            <i class="la la-users">
+            </i>
+        </span>
+        <span class="kt-menu__link-text">Users</span>
+        <i class="kt-menu__ver-arrow la la-angle-right"></i>
+    </a>
+    <div class="kt-menu__submenu " kt-hidden-height="400" style="">
+        <span class="kt-menu__arrow"></span>
+        <ul class="kt-menu__subnav">
+            <li class="kt-menu__item " aria-haspopup="true">
+                <a href="{{ route('admin.teacher.index') }}" class="kt-menu__link ">
+                    <span class="kt-menu__link-icon">
+                        <i class="la la-user">
+                        </i>
+                    </span>
+                    <span class="kt-menu__link-text">Teacher</span>
+                </a>
+            </li>
+            <li class="kt-menu__item " aria-haspopup="true">
+                <a href="{{ route('admin.teacher.index') }}" class="kt-menu__link ">
+                    <span class="kt-menu__link-icon">
+                        <i class="la la-user">
+                        </i>
+                    </span>
+                    <span class="kt-menu__link-text">Student</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>

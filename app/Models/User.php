@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,23 +19,11 @@ class User extends Authenticatable
     use SoftDeletes;
 
     /**
-     * @return BelongsTo
-     */
-    public function roles():BelongsTo{
-        return $this->belongsTo(Role::class,'role_id','id');
-    }
-    public function teacher(): HasMany{
-        return $this->hasMany(Teacher::class,'teacher_id','id');
-    }
-
-
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-
+    protected $guarded=['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -51,12 +40,26 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $guarded=['id'];
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
-  
+    /**
+     * @return BelongsTo
+     */
+    public function roles():BelongsTo{
+        return $this->belongsTo(Role::class,'role_id','id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function teacher(): HasOne{
+        return $this->hasOne(Teacher::class,'user_id','id');
+    }
+
+
+
 }
 
