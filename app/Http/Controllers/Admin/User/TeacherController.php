@@ -19,10 +19,10 @@ class TeacherController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->wantsJson()) {
+        if ($request->wantsJson()) {
             return $this->datatable();
         }
-        return view($this->view.'index');
+        return view($this->view . 'index');
     }
 
     /**
@@ -32,7 +32,7 @@ class TeacherController extends Controller
     {
         $faculties = Faculty::all()->pluck('name', 'id');
 
-        return view($this->view.'create', compact('faculties'));
+        return view($this->view . 'create', compact('faculties'));
     }
 
     /**
@@ -48,10 +48,10 @@ class TeacherController extends Controller
             ]
         );
         $teacherData = $request->except(
-                [
-                    'user',
-                    '_token'
-                ]
+            [
+                'user',
+                '_token'
+            ]
         );
         DB::beginTransaction();
         $user = User::create($userData);
@@ -59,7 +59,6 @@ class TeacherController extends Controller
         Db::commit();
 
         return redirect()->route('admin.teacher.index');
-
     }
 
     /**
@@ -78,7 +77,7 @@ class TeacherController extends Controller
         $teacher = Teacher::findOrFail($id)->load(['user', 'faculty']);
         $faculties = Faculty::all()->pluck('name', 'id');
 
-        return view($this->view.'edit', compact('teacher', 'faculties'));
+        return view($this->view . 'edit', compact('teacher', 'faculties'));
     }
 
     /**
@@ -112,15 +111,20 @@ class TeacherController extends Controller
         return redirect()->back();
     }
 
-    public function dataTable() {
+    public function dataTable()
+    {
         $teacher = Teacher::query()->with(['user', 'faculty']);
         return Datatables::of($teacher)
             ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $btn = '<a href="'.route("admin.teacher.edit", $row->id).'" class="edit-btn btn btn-primary btn-xs"><i class="la la-edit"></i></a>';
-                $btn.= '<a href="'.route("admin.teacher.destroy", $row->id).'" class="delete-btn btn btn-danger btn-xs"><i class="la la-trash"></i></a>';
-
-                return $btn;
+            ->addColumn('action', function ($row) {
+                $params = [
+                    'is_edit' => true,
+                    'is_delete' => true,
+                    'is_show' => true,
+                    'route' => 'admin.teacher.',
+                    'row' => $row
+                ];
+                return view('backend.datatable.action', compact('params'));
             })
             ->rawColumns(['action'])
             ->make(true);
