@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Constants\RoleConstant;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Teacher;
+use App\Constants\RoleConstant;
 use Illuminate\Database\Seeder;
+use App\Constants\FacultyConstant;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserTableSeeder extends Seeder
 {
@@ -15,7 +17,7 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         $users = [
             [
                 'name' => 'Sharad Yadav',
@@ -38,16 +40,29 @@ class UserTableSeeder extends Seeder
                 'email' => 'sunil1@gmail.com',
                 'password' => 'password',
                 'number' => '986157800',
-                'role_id' => RoleConstant::TEACHER_ID
+                'role_id' => RoleConstant::TEACHER_ID,
+                'teacher' => [
+                    'salary' => 2000,
+                    'faculty_id' => FacultyConstant::COMP_ID
+                ]
             ]
         ];
 
         Schema::disableForeignKeyConstraints();
         User::truncate();
+        Teacher::truncate();
         Schema::enableForeignKeyConstraints();
 
         foreach ($users as $user) {
-            User::create($user);
+            if (isset($user['teacher'])) {
+                $teacherData = $user['teacher'];
+                unset($user['teacher']);
+            }
+
+            $user = User::create($user);
+            if (isset($teacherData)) {
+                $user->teacher()->create($teacherData);
+            }
         }
     }
 }

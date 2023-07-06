@@ -22,9 +22,10 @@ class Teacher extends Model
      *
      * @return BelongsTo
      */
-   public function user(): BelongsTo{
-       return $this->belongsTo(User::class,'user_id','id');
-   }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     /**
      * @return BelongsTo
