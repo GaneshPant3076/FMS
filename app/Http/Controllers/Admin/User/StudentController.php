@@ -2,27 +2,34 @@
 
 namespace App\Http\Controllers\Admin\User;
 
-use App\Constants\RoleConstant;
 use App\Http\Controllers\Controller;
-use App\Models\Faculty;
+use App\Constants\RoleConstant;
+use App\Models\Batch;
+use App\Models\Section;
+use App\Models\Semester;
 use App\Models\Teacher;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Student;
+use App\Models\User;
+use App\Models\Faculty;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
-class TeacherController extends Controller
+
+
+class StudentController extends Controller
 {
-    private $view = 'backend.admin.user.teacher.';
+    private $view = 'backend.admin.user.student.';
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         if ($request->wantsJson()) {
-            return $this->datatable();
+            return $this->Datatable();
         }
         return view($this->view . 'index');
+        //
     }
 
     /**
@@ -31,8 +38,13 @@ class TeacherController extends Controller
     public function create()
     {
         $faculties = Faculty::all()->pluck('name', 'id');
+        $semesters = Semester::all()->pluck('name','id');
+        $sections= Section::all()->pluck('name','id');
 
-        return view($this->view . 'create', compact('faculties'));
+        $batches= Batch::all()->pluck('batch_year','id');
+        $users= User::all()->pluck('name','id');
+
+        return view($this->view . 'create', compact('faculties','semesters','sections','batches','users'));
     }
 
     /**
@@ -43,22 +55,26 @@ class TeacherController extends Controller
         $userData = array_merge(
             $request->input('user'),
             [
-                'role_id' => RoleConstant::TEACHER_ID,
+                'role_id' => RoleConstant::STUDENT_ID,
                 'password' => bcrypt('password')
             ]
         );
-        $teacherData = $request->except(
+        $studentData = $request->except(
             [
                 'user',
                 '_token'
-            ]
+            ],
+
+
         );
+
+
         DB::beginTransaction();
         $user = User::create($userData);
-        $user->teacher()->create($teacherData);
+        $user->student()->create($studentData);
         Db::commit();
 
-        return redirect()->route('admin.teacher.index');
+        return redirect()->route('admin.student.index');
     }
 
     /**
@@ -66,9 +82,9 @@ class TeacherController extends Controller
      */
     public function show(string $id)
     {
-        $teacher = Teacher::findOrFail($id)->load(['user', 'faculty']);
+        $student = Student::findOrFail($id)->load(['user', 'faculty','batch','semester','section']);
 
-        return view($this->view . 'show', compact('teacher'));
+        return view($this->view . 'show', compact('student'));
     }
 
     /**
@@ -76,10 +92,14 @@ class TeacherController extends Controller
      */
     public function edit(string $id)
     {
-        $teacher = Teacher::findOrFail($id)->load(['user', 'faculty']);
         $faculties = Faculty::all()->pluck('name', 'id');
+        $semesters = Semester::all()->pluck('name','id');
+        $sections= Section::all()->pluck('name','id');
 
-        return view($this->view . 'edit', compact('teacher', 'faculties'));
+        $batches= Batch::all()->pluck('batch_year','id');
+        $users= User::all()->pluck('name','id');
+
+        return view($this->view . 'create', compact('faculties','semesters','sections','batches','users'));
     }
 
     /**
@@ -87,20 +107,20 @@ class TeacherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $teacher = Teacher::findOrFail($id);
+        $student = Student::findOrFail($id);
         $userData = $request->input('user');
-        $teacherData = $request->except(
+        $studentData = $request->except(
             [
                 'user',
                 '_token'
             ]
         );
         DB::beginTransaction();
-        $teacher->user()->update($userData);
-        $teacher->update($teacherData);
+        $student->user()->update($userData);
+        $student->update($studentData);
         Db::commit();
 
-        return redirect()->route('admin.teacher.index');
+        return redirect()->route('admin.student.index');
     }
 
     /**
@@ -108,26 +128,25 @@ class TeacherController extends Controller
      */
     public function destroy(string $id)
     {
-        $teacher = Teacher::findOrFail($id);
+        $student = Student::findOrFail($id);
         DB::beginTransaction();
-        $teacher->user()->delete();
-        $teacher->delete();
+        $student->user()->delete();
+        $student->delete();
         DB::commit();
 
-        return redirect()->route('admin.teacher.index');
+        return redirect()->route('admin.student.index');
     }
-
-    public function dataTable()
+    public function Datatable()
     {
-        $teacher = Teacher::query()->with(['user', 'faculty']);
-        return Datatables::of($teacher)
+        $student = Student::query()->with(['user', 'faculty','batch','semester','section']);
+        return Datatables::of($student)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
                 $params = [
                     'is_edit' => true,
                     'is_delete' => true,
                     'is_show' => true,
-                    'route' => 'admin.teacher.',
+                    'route' => 'admin.student.',
                     'row' => $row
                 ];
                 return view('backend.datatable.action', compact('params'));
