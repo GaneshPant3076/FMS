@@ -1,42 +1,43 @@
 <div class="kt-portlet__body">
     <div class="form-group row">
         <div class="col-lg-6">
-             <label for="">Name</label>
+            <label for="">Name</label>
             {!! Form::text('user[name]', null, ['class' => 'form-control']) !!}
             @error('user.name')
                 {{ $message }}
             @enderror
         </div>
-         <div class="col-lg-6">
+        <div class="col-lg-6">
             <label for="email">Email</label>
             {!! Form::email('user[email]', null, ['class' => 'form-control']) !!}
             @error('user.email')
-            {{ $message }}
-            @enderror
-        </div> 
-    </div>
-    <div class="form-group row">
-        <div class="col-lg-6">
-            <label for="faculty">Faculty</label>
-            {!! Form::select('faculty_id',$faculties, null, ['class' => 'form-control']) !!}
-            @error('faculty_id')
-            {{ $message }}
-            @enderror
-        </div>
-
-        <div class="col-lg-6">
-
-            <label for="faculty">Batch</label>
-            {!! Form::select('batch_id',$batches, null, ['class' => 'form-control']) !!}
-            @error('faculty_id')
-            {{ $message }}
+                {{ $message }}
             @enderror
         </div>
     </div>
-
     <div class="form-group row">
+        <div class="col-lg-6">
+            <label for="faculty">Role</label>
+            {!! Form::select('role_id', $roles, null, ['class' => 'form-control']) !!}
+            @error('faculty_id')
+                {{ $message }}
+            @enderror
+        </div>
 
+        
+
+            <div class="col-lg-6">
+                <label for="password">Number</label>
+                {!! Form::text('Number', null, ['class' => 'form-control']) !!}
+                @error('salary')
+                    {{ $message }}
+                @enderror
+            </div>
+
+        </div>
     </div>
+
+
 </div>
 
 <div class="kt-portlet__foot">
@@ -49,5 +50,3 @@
         </div>
     </div>
 </div>
-
-

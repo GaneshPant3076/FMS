@@ -19,7 +19,7 @@
         <div class="col-lg-6">
             <label for="faculty">Faculty</label>
             {!! Form::select('faculty_id',$faculties, null, ['class' => 'form-control']) !!}
-            @error('faculty_id')
+            @error('faculty')
             {{ $message }}
             @enderror
         </div>

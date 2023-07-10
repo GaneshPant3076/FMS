@@ -40,13 +40,18 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+
         $userData = array_merge(
             $request->input('user'),
             [
                 'role_id' => RoleConstant::TEACHER_ID,
-                'password' => bcrypt('password')
+                'password' => bcrypt('password'),
+
             ]
         );
+
+
+
         $teacherData = $request->except(
             [
                 'user',
@@ -66,7 +71,8 @@ class TeacherController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $teacher = Teacher::findOrFail($id)->load(['user','faculty']);
+        return view($this->view.'show',compact('teacher'));
     }
 
     /**
@@ -106,9 +112,13 @@ class TeacherController extends Controller
      */
     public function destroy(string $id)
     {
-        Teacher::destroy($id);
+       $teacher = Teacher::findOrFail($id);
+        DB::beginTransaction();
+        $teacher->user()->delete();
+        $teacher->delete();
+        Db::commit();
+        return redirect()->route('admin.teacher.index');
 
-        return redirect()->back();
     }
 
     public function dataTable()

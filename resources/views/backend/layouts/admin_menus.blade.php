@@ -32,6 +32,15 @@
                     <span class="kt-menu__arrow"></span>
                     <ul class="kt-menu__subnav">
                         <li class="kt-menu__item " aria-haspopup="true">
+                            <a href="{{ route('admin.admin.index') }}" class="kt-menu__link ">
+                                <span class="kt-menu__link-icon">
+                                    <i class="la la-user">
+                                    </i>
+                                </span>
+                                <span class="kt-menu__link-text">Admin</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true">
                             <a href="{{ route('admin.teacher.index') }}" class="kt-menu__link ">
                                 <span class="kt-menu__link-icon">
                                     <i class="la la-user">
@@ -41,7 +50,7 @@
                             </a>
                         </li>
                         <li class="kt-menu__item " aria-haspopup="true">
-                            <a href="{{ route('admin.teacher.index') }}" class="kt-menu__link ">
+                            <a href="{{ route('admin.student.index') }}" class="kt-menu__link ">
                                 <span class="kt-menu__link-icon">
                                     <i class="la la-user">
                                     </i>
@@ -49,8 +58,63 @@
                                 <span class="kt-menu__link-text">Student</span>
                             </a>
                         </li>
+
                     </ul>
-                </div>
+            <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
+                <a href="{{ route('faculty.index') }}" class="kt-menu__link ">
+                    <span class="kt-menu__link-icon">
+                        <i class=" la la-align-justify">
+                        </i>
+                    </span>
+                    <span class="kt-menu__link-text">Faculty</span>
+                </a>
+            </li>
+            <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
+                <a href="{{ route('faculty.index') }}" class="kt-menu__link ">
+                    <span class="kt-menu__link-icon">
+                        <i class="la la-bars">
+                        </i>
+                    </span>
+                    <span class="kt-menu__link-text">Semester</span>
+                </a>
+            </li>
+            <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
+                <a href="{{ route('faculty.index') }}" class="kt-menu__link ">
+                    <span class="kt-menu__link-icon">
+                        <i class="la la-graduation-cap">
+                        </i>
+                    </span>
+                    <span class="kt-menu__link-text">Batch</span>
+                </a>
+            </li>
+            <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
+                <a href="{{ route('faculty.index') }}" class="kt-menu__link ">
+                    <span class="kt-menu__link-icon">
+                        <i class="la la-book">
+                        </i>
+                    </span>
+                    <span class="kt-menu__link-text">Note</span>
+                </a>
+            </li>
+            <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
+                <a href="{{ route('faculty.index') }}" class="kt-menu__link ">
+                    <span class="kt-menu__link-icon">
+                        <i class="la la-book">
+                        </i>
+                    </span>
+                    <span class="kt-menu__link-text">Assignment</span>
+                </a>
+            </li>
+            <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true">
+                <a href="{{ route('faculty.index') }}" class="kt-menu__link ">
+                    <span class="kt-menu__link-icon">
+                        <i class="la la-gear">
+                        </i>
+                    </span>
+                    <span class="kt-menu__link-text">settings</span>
+                </a>
             </li>
     </div>
+    </li>
+</div>
 </div>

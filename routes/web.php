@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\FacultyController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Models\Faculty;
 use App\Models\Role;
 
 /*
@@ -28,3 +31,9 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth/auth.php';
 require __DIR__ . '/auth/admin.php';
+
+Route::resource('admin/faculty',FacultyController::class);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', 'ProfileController@show')->name('profile');
+});

@@ -12,9 +12,11 @@
             <div class="kt-portlet__head-toolbar">
                 <div class="kt-portlet__head-actions">
                     <a href="{{ url('admin/teacher/create') }}" class="btn btn-primary">
+
                         <i class="fa fa-plus"></i>
                         Create
                     </a>
+                    
                 </div>
             </div>
         </div>
