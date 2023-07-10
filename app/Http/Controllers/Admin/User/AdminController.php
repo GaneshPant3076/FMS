@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\User;
 
 use App\Constants\RoleConstant;
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\Faculty;
 use App\Models\Teacher;
 use App\Models\User;
@@ -11,9 +12,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
-class TeacherController extends Controller
+class AdminController extends Controller
 {
-    private $view = 'backend.admin.user.teacher.';
+    private $view = 'backend.admin.user.admin.';
     /**
      * Display a listing of the resource.
      */
@@ -28,11 +29,11 @@ class TeacherController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        $faculties = Faculty::all()->pluck('name', 'id');
 
-        return view($this->view . 'create', compact('faculties'));
+
+        return view($this->view . 'create');
     }
 
     /**
@@ -43,11 +44,11 @@ class TeacherController extends Controller
         $userData = array_merge(
             $request->input('user'),
             [
-                'role_id' => RoleConstant::TEACHER_ID,
+                'role_id' => RoleConstant::ADMIN_ID,
                 'password' => bcrypt('password')
             ]
         );
-        $teacherData = $request->except(
+        $adminData = $request->except(
             [
                 'user',
                 '_token'
@@ -55,20 +56,17 @@ class TeacherController extends Controller
         );
         DB::beginTransaction();
         $user = User::create($userData);
-        $user->teacher()->create($teacherData);
+        $user->admin()->create($adminData);
         Db::commit();
 
-        return redirect()->route('admin.teacher.index');
+        return redirect()->route('admin.admin.index');
     }
-
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Admin $admin)
     {
-        $teacher = Teacher::findOrFail($id)->load(['user', 'faculty']);
-
-        return view($this->view . 'show', compact('teacher'));
+        return view($this->view . 'show', compact('admin'));
     }
 
     /**
@@ -76,10 +74,10 @@ class TeacherController extends Controller
      */
     public function edit(string $id)
     {
-        $teacher = Teacher::findOrFail($id)->load(['user', 'faculty']);
-        $faculties = Faculty::all()->pluck('name', 'id');
+        $admin = Admin::findOrFail($id)->load(['user']);
 
-        return view($this->view . 'edit', compact('teacher', 'faculties'));
+
+        return view($this->view . 'edit', compact('admin', ));
     }
 
     /**
@@ -87,20 +85,20 @@ class TeacherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $teacher = Teacher::findOrFail($id);
+        $admin = Admin::findOrFail($id);
         $userData = $request->input('user');
-        $teacherData = $request->except(
+        $adminData = $request->except(
             [
                 'user',
                 '_token'
             ]
         );
         DB::beginTransaction();
-        $teacher->user()->update($userData);
-        $teacher->update($teacherData);
+        $admin->user()->update($userData);
+        $admin->update($adminData);
         Db::commit();
 
-        return redirect()->route('admin.teacher.index');
+        return redirect()->route('admin.admin.index');
     }
 
     /**
@@ -108,26 +106,25 @@ class TeacherController extends Controller
      */
     public function destroy(string $id)
     {
-        $teacher = Teacher::findOrFail($id);
+        $admin = Admin::findOrFail($id);
         DB::beginTransaction();
-        $teacher->user()->delete();
-        $teacher->delete();
+        $admin->user()->delete();
+        $admin->delete();
         DB::commit();
 
-        return redirect()->route('admin.teacher.index');
+        return redirect()->route('admin.admin.index');
     }
-
     public function dataTable()
     {
-        $teacher = Teacher::query()->with(['user', 'faculty']);
-        return Datatables::of($teacher)
+        $admin = Admin::query()->with(['user']);
+        return Datatables::of($admin)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
                 $params = [
                     'is_edit' => true,
                     'is_delete' => true,
                     'is_show' => true,
-                    'route' => 'admin.teacher.',
+                    'route' => 'admin.admin.',
                     'row' => $row
                 ];
                 return view('backend.datatable.action', compact('params'));

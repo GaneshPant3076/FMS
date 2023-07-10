@@ -5,10 +5,10 @@
             <div class="kt-portlet__head-label">
                 <span class="kt-portlet__head-icon">
                 </span>
-                <h3 class="kt-portlet__head-title">Create student</h3>
+                <h3 class="kt-portlet__head-title">Create Student</h3>
             </div>
         </div>
-        {!! Form::open(['url' => 'admin/student', 'class' => 'kt-form kt-form--label-right', 'method' => 'post']) !!}
+        {!! Form::open(['route' => 'admin.student.store', 'class' => 'kt-form kt-form--label-right', 'method' => 'post']) !!}
         @include('backend.admin.user.student.form', ['formAction' => 'Save'])
         {!! Form::close() !!}
     </div>

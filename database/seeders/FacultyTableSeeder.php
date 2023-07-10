@@ -27,7 +27,7 @@ class FacultyTableSeeder extends Seeder
 
             [
                 'name' => FacultyConstant::ARCH,
-                'years_to_graduate' => 4
+                'years_to_graduate' => 5
             ]
         ];
 

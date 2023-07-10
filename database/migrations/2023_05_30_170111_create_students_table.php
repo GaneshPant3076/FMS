@@ -16,13 +16,18 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('faculty_id');
             $table->unsignedBigInteger('batch_id');
-            $table->string('name');
+            $table->unsignedBigInteger('semester_id');
+            $table->unsignedBigInteger('section_id');
+
             $table->timestamps();
             $table->softdeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
             $table->foreign('faculty_id')->references('id')->on('faculties')->ondelete('cascade');
             $table->foreign('batch_id')->references('id')->on('batches')->ondelete('cascade');
+            $table->foreign('semester_id')->references('id')->on('semesters')->ondelete('cascade');
+            $table->foreign('section_id')->references('id')->on('sections')->ondelete('cascade');
+
         });
     }
 

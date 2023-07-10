@@ -26,5 +26,11 @@ public function batch(): BelongsTo{
 public function assignment_submission(): HasMany{
         return $this->hasMany(AssignmentSubmission::class,'student_id','id');
 }
+public function semester(): BelongsTo{
+        return $this->belongsTo(Semester::class,'semester_id','id');
+}
+public function section(): BelongsTo{
+        return  $this->belongsTo(Section::class,'section_id','id');
+}
 
 }

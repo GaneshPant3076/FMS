@@ -41,6 +41,8 @@ class BatchTableSeeder extends Seeder
 
         foreach ($batches as $batch) {
             Batch::create($batch);
+
         }
+
     }
 }

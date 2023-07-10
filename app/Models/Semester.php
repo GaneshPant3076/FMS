@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Semester extends Model
@@ -22,5 +23,9 @@ class Semester extends Model
     }
     public function section(): HasMany{
         return $this->hasMany(Section::class,'semester_id','id');
+    }
+    public function student():HasMany{
+        return $this->hasMany(Student::class,'semester_id','id');
+
     }
 }
